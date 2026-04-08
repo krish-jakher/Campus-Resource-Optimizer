@@ -5,11 +5,15 @@ import pickle
 import os
 import warnings
 
+# Use /tmp for Vercel serverless compatibility
+IS_VERCEL = os.environ.get('VERCEL', False)
+TMP = "/tmp" if IS_VERCEL else "."
+
 # Models
-ROOM_MODEL = "room_model.pkl"
-SEAT_MODEL = "seat_model.pkl"
-SEAT_ENCODER = "seat_encoder.pkl"
-USER_MODEL = "user_model.pkl"
+ROOM_MODEL = os.path.join(TMP, "room_model.pkl")
+SEAT_MODEL = os.path.join(TMP, "seat_model.pkl")
+SEAT_ENCODER = os.path.join(TMP, "seat_encoder.pkl")
+USER_MODEL = os.path.join(TMP, "user_model.pkl")
 
 # Datasets
 ROOM_DATA = "Occupancy_Estimation.csv"

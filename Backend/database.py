@@ -4,7 +4,9 @@ import os
 import pandas as pd
 import random
 
-DB_FILE = "campus_resources.db"
+# Use /tmp for Vercel serverless compatibility (writable directory)
+IS_VERCEL = os.environ.get('VERCEL', False)
+DB_FILE = "/tmp/campus_resources.db" if IS_VERCEL else "campus_resources.db"
 BOOKS_DATA = "books_dataset.csv"
 
 def create_connection():
